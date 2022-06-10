@@ -1,0 +1,79 @@
+Script started on 2021-05-28 19:48:30-04:00 [TERM="xterm" TTY="/dev/pty0" COLUMNS="134" LINES="61"]
+]0;~/Lab 2
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 2[0m
+$ cat Lab2.c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    //Initializing all array variables
+    int random[15];
+    int start[10];
+    int end[10]; 
+    int maxSum[10];
+
+    //Starting for-loop used for 10 Randomly generated sequences
+    for(int c = 0; c < 10; c++) {
+        //Creates 15 random integers and saves them into random[]
+        for(int i = 0; i < 15; i++) {
+            random[i] = rand()% 100-50;
+        }
+
+        //Initialize all variables to proper starting values
+        start[c] = -1; 
+        end[c] = -1;
+        maxSum[c] = 0;
+        int i = 0;
+        int j = 0;
+        int sum = 0;
+
+        int n = 15; // Number of element in the sequence
+
+        while(j <= n && i <= j) {
+            sum = sum + random[j]; 
+            if(sum > maxSum[c]) {
+                maxSum[c] = sum;
+                start[c] = i;   //Reset I and J 
+                end[c] = j; 
+            }
+            if(sum < 0) {
+                i = j + 1;  //Increase the value of I 
+                sum = 0;
+            }
+            j++;
+        }
+    }
+    //Prints out maxSum values for all 10 Sequences 
+    for(int i = 0; i < 10; i++) {
+        printf("Start = %d, End = %d, maxSum = %d\n", start[i],end[i],maxSum[i]);
+    }
+}]0;~/Lab 2
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 2[0m
+$ cc Lab2.c
+]0;~/Lab 2
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 2[0m
+$ ,.[K[K./a
+Start = 6, End = 8, maxSum = 14
+Start = 0, End = 14, maxSum = 121
+Start = 8, End = 10, maxSum = 59
+Start = 2, End = 5, maxSum = 153
+Start = 12, End = 12, maxSum = 45
+Start = 1, End = 7, maxSum = 149
+Start = 3, End = 8, maxSum = 71
+Start = 2, End = 9, maxSum = 62
+Start = 0, End = 4, maxSum = 75
+Start = 4, End = 11, maxSum = 190
+]0;~/Lab 2
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 2[0m
+$ ls[Ks -1[K;[Kl
+total 488
+-rwxr-xr-x 1 Admin None   1274 May 28 19:47 Lab2.c
+-rwxr-xr-x 1 Admin None 331042 May 28 19:46 Lab2.exe
+-rwxr-xr-x 1 Admin None      0 May 28 19:48 Lab2.txt
+-rwxr-xr-x 1 Admin None 160982 May 28 19:48 a.exe
+]0;~/Lab 2
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 2[0m
+$ exit
+exit
+
+Script done on 2021-05-28 19:49:21-04:00 [COMMAND_EXIT_CODE="0"]

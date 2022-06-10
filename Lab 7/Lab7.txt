@@ -1,0 +1,129 @@
+Script started on 2021-07-05 17:28:44-04:00 [TERM="xterm" TTY="/dev/pty0" COLUMNS="80" LINES="24"]
+]0;~/Lab 7
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 7[0m
+$ cat Lav[Kb7.c
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+//function prototypes
+void quickSort(int list[], int, int);
+void insertionSort(int list[], int);
+int partition(int list[], int, int);
+
+//Creates variables for sort times
+double timeInsertion = 0.0;
+double timeQuick = 0.0;
+
+int main(void){
+    srand(time(NULL)); //creates random number varaible
+    printf("Please enter the number of random integers: \n");
+    int listSize; //gets size of list from user
+    scanf("%d", &listSize);
+    int a[listSize]; //creates two identical lists to be sorted
+    int b[listSize];
+    for(int i = 0; i < listSize; i++) { //creates listSize of random numbers
+        a[i] = rand() % 100 - 50;
+        b[i] = a[i];
+    }
+    clock_t begin1 = clock(); //starts the first clock
+    insertionSort(a,listSize); //runs insertion sort on array a[]
+    clock_t end1 = clock(); //ends first clock
+    timeInsertion += (double)((end1 - begin1) / CLOCKS_PER_SEC); //calculates time for sorting
+    clock_t begin2 = clock(); //begins second clock
+    quickSort(b,0, listSize-1); //runs quicksort 
+    clock_t end2 = clock(); //ends second clock
+    timeQuick += (double)((end2 - begin2) / CLOCKS_PER_SEC); //calculates time for sorting
+    if(listSize < 30) { //for lists less than 30, show the list being sorted, if bigger only show the run time
+        printf("Insertion Sort: ");
+        for(int i = 0; i < listSize; i++) { //prints out array a[]
+            printf("%d ", a[i]);
+        }
+        printf("\n");
+        printf("Quick Sort: ");
+        for(int i = 0; i < listSize; i++) { //prints out array b[]
+            printf("%d ", b[i]);
+        }
+    }
+    else {
+        printf("Insertion Sort Time: %f\n", timeInsertion); //prints out both run times 
+        printf("Quick Sort Time: %f\n", timeQuick);
+    }
+}
+
+
+void insertionSort(int a[], int listSize) {
+    int j,temp; 
+    for(int i = 1; i <listSize; i++) { 
+        temp = a[i]; //save value of a[i]
+        j = i - 1;
+        while (j >= 0 && a[j] > temp) {  //search for location of a[i]
+            a[j+1] = a[j];
+            j--;
+        }
+        a[j+1] = temp;
+    }
+}
+
+void quickSort(int a[], int p, int q) {
+    if(p < q) {
+        int r = partition(a,p,q); //calls the partition()
+        quickSort(a,p,r); //recursively calls quicksort
+        quickSort(a,r+1,q);
+    }
+}
+
+int partition(int a[], int p, int q){
+    int i = p-1;
+    int j = q+1;
+    int x = a[p];
+    int flag = 1;
+    int temp;
+
+    while(flag){
+        // move left pointer
+        do i = i+1;
+        while (a[i]<x);
+        //move right pointer
+        do j = j-1;
+        while (a[j]>x);
+        if (i<j){
+            //exchange a[1] and a[j]
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+        else flag = 0;
+    }
+    return j;
+}]0;~/Lab 7
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 7[0m
+$ cc Lab7.c
+]0;~/Lab 7
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 7[0m
+$ ./a
+Please enter the number of random integers: 
+15
+Insertion Sort: -33 -31 -16 -15 -7 5 6 7 11 21 21 21 29 38 49 
+Quick Sort: -33 -31 -16 -15 -7 5 6 7 11 21 21 21 29 38 49 ]0;~/Lab 7
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 7[0m
+$ ./a
+Please enter the number of random integers: 
+90000
+Insertion Sort Time: 4.000000
+Quick Sort Time: 0.000000
+]0;~/Lab 7
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 7[0m
+$ ls =[K-1[Kl
+total 596
+-rwxr-xr-x 1 Admin None   2897 Jul  5 17:26 Lab7.c
+-rwxr-xr-x 1 Admin None 334303 Jul  5 14:50 Lab7.exe
+-rwxr-xr-x 1 Admin None      0 Jul  5 17:28 Lab7.txt
+-rwxr-xr-x 1 Admin None 164721 Jul  5 17:28 a.exe
+-rwxr-xr-x 1 Admin None 101840 Jul  5 17:27 lab7COMP2540S21.pdf
+]0;~/Lab 7
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 7[0m
+$ exit
+exit
+
+Script done on 2021-07-05 17:29:32-04:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,136 @@
+Script started on 2021-05-19 16:22:40-04:00 [TERM="xterm" TTY="/dev/pty0" COLUMNS="80" LINES="24"]
+]0;~/Lab 1
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 1[0m
+$ cat Lab[Kb1.c
+//Tyler Hedges Johnston
+//105213585
+//2021-05-17
+//GCD Algorithm
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int gcd(int m, int n);
+int minValue(int m,int n);
+
+int main() {
+    int n,m;
+    for(int i = 0; i < 50; i++) {
+        n = rand() %100;
+        m = rand() % 100; 
+        gcd(m+1,n+1);
+    }
+}
+
+int gcd(int m,int n){
+    int temp1,temp2,r = 0;
+    int u1 = 1;
+    int v1 = 0;
+    int u0 = 0;
+    int v0 = 1;
+    int m1 = m;
+    int n1 = n;
+    int count = 1; 
+
+    while (m1%n1 != 0){
+        count++;
+        temp1 =u0;
+        temp2 = v0;
+        u0 = u1-(m1%n1)*u0;
+        v0 = v1-(m1%n1)*v0;
+        u1 = temp1;
+        v1 = temp2;
+
+        r = m1%n1;
+        m1 = n1;
+        n1 = r;
+    }
+
+    int theo = 2*(ceil(log(minValue(m,n))/log(2))+1) + 1; // 2 ( ceil(lg n)) + 1
+    //printf(" m = %d n = %d r = %d count = %d minValue = %d theoValue = %d\n", m,n,r, count, minValue(m,n), theo);  
+    printf("%d*%d + %d*%d = %d, Count = %d, Theoretical Count = %d\n", u0,m,v0,n,n1,count,theo);
+    
+
+    return 0;
+}
+
+int minValue(int m,int n){
+    if(m > n){
+        return n;
+    }
+    else {
+        return m; 
+    }
+}
+]0;~/Lab 1
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 1[0m
+$ cc lab1.c
+]0;~/Lab 1
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 1[0m
+$ ./a
+9*44 + -92*34 = 2, Count = 4, Theoretical Count = 15
+-3*30 + 91*63 = 3, Count = 3, Theoretical Count = 13
+0*9 + 1*1 = 1, Count = 1, Theoretical Count = 3
+-1*57 + 5*53 = 1, Count = 3, Theoretical Count = 15
+173*20 + -3470*57 = 1, Count = 6, Theoretical Count = 13
+1*52 + -4*12 = 4, Count = 2, Theoretical Count = 11
+-2*6 + 13*44 = 2, Count = 3, Theoretical Count = 9
+-1*94 + 5*9 = 1, Count = 3, Theoretical Count = 11
+-1*67 + 6*31 = 1, Count = 3, Theoretical Count = 13
+5*33 + -166*70 = 1, Count = 4, Theoretical Count = 15
+-6*48 + 73*18 = 6, Count = 3, Theoretical Count = 13
+5*69 + -346*73 = 1, Count = 4, Theoretical Count = 17
+-174*24 + 4195*81 = 3, Count = 5, Theoretical Count = 13
+8*93 + -345*50 = 1, Count = 4, Theoretical Count = 15
+1*70 + -5*65 = 5, Count = 2, Theoretical Count = 17
+97*28 + -2720*52 = 4, Count = 4, Theoretical Count = 13
+-3238*25 + 81151*91 = 1, Count = 7, Theoretical Count = 13
+-288*21 + 6067*36 = 3, Count = 5, Theoretical Count = 13
+-1*11 + 12*45 = 1, Count = 3, Theoretical Count = 11
+-77*85 + 1698*63 = 1, Count = 5, Theoretical Count = 15
+1*2 + -2*64 = 2, Count = 2, Theoretical Count = 5
+4*37 + -17*11 = 1, Count = 4, Theoretical Count = 11
+-92*32 + 2951*77 = 1, Count = 5, Theoretical Count = 13
+13*98 + -106*30 = 2, Count = 4, Theoretical Count = 13
+49*92 + -788*76 = 4, Count = 4, Theoretical Count = 17
+-1*45 + 46*91 = 1, Count = 3, Theoretical Count = 15
+-82*26 + 2141*35 = 1, Count = 5, Theoretical Count = 13
+1*31 + -1*30 = 1, Count = 2, Theoretical Count = 13
+-1*27 + 28*28 = 1, Count = 3, Theoretical Count = 13
+-82*35 + 2879*44 = 1, Count = 5, Theoretical Count = 15
+1*61 + -1*5 = 1, Count = 2, Theoretical Count = 9
+-434*21 + 9167*50 = 1, Count = 7, Theoretical Count = 13
+4195*33 + -138609*57 = 3, Count = 6, Theoretical Count = 15
+-10*14 + 143*73 = 1, Count = 5, Theoretical Count = 11
+-1*10 + 11*91 = 1, Count = 3, Theoretical Count = 11
+-2*6 + 13*20 = 2, Count = 3, Theoretical Count = 9
+-416*50 + 20809*96 = 2, Count = 5, Theoretical Count = 15
+33*20 + -664*28 = 4, Count = 4, Theoretical Count = 13
+-70*25 + 1753*98 = 1, Count = 5, Theoretical Count = 13
+473*50 + -23660*97 = 1, Count = 6, Theoretical Count = 15
+-1*85 + 29*57 = 1, Count = 3, Theoretical Count = 15
+-2*46 + 93*94 = 2, Count = 3, Theoretical Count = 15
+-1*7 + 8*8 = 1, Count = 3, Theoretical Count = 9
+1*55 + -5*10 = 5, Count = 2, Theoretical Count = 11
+-1*66 + 14*53 = 1, Count = 3, Theoretical Count = 15
+19*39 + -744*84 = 3, Count = 4, Theoretical Count = 15
+1*91 + -1*2 = 1, Count = 2, Theoretical Count = 5
+4*38 + -29*31 = 1, Count = 4, Theoretical Count = 13
+-2148*57 + 122491*96 = 3, Count = 5, Theoretical Count = 15
+-4*12 + 49*64 = 4, Count = 3, Theoretical Count = 11
+]0;~/Lab 1
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 1[0m
+$ ls -1[Kl
+total 500
+-rwxr-xr-x  1 Admin None   1204 May 19 16:21 Lab1.c
+-rwxr-xr-x  1 Admin None 337553 May 19 16:20 Lab1.exe
+-rwxr-xr-x  1 Admin None      0 May 19 16:22 Lab1.txt
+drwxr-xr-x+ 1 Admin None      0 May 18 18:42 Test
+-rwxr-xr-x  1 Admin None 161399 May 19 16:22 a.exe
+]0;~/Lab 1
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 1[0m
+$ exit
+exit
+
+Script done on 2021-05-19 16:23:20-04:00 [COMMAND_EXIT_CODE="0"]

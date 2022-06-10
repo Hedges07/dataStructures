@@ -1,0 +1,71 @@
+Script started on 2021-05-30 20:44:20-04:00 [TERM="xterm" TTY="/dev/pty0" COLUMNS="80" LINES="24"]
+]0;~/Lab 3
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 3[0m
+$ cat lab3.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//Initalizing Stack and count variables
+int stack[256];
+int count = 0; 
+
+//Creating push function to add values to stack
+void push(int x) {
+    stack[count] = x;
+    count++;
+}
+
+//Creating pop function to remove values from stack
+int pop() {
+    int result = stack[count-1];
+    count--;
+    return result;
+}
+
+int main() {
+    //Creating char array to save () to
+    char parentheses[256] = {'(','(',')',')'};
+
+    //Creating for loop that runs for as many ( there are
+    for(int i = 0; i < strlen(parentheses); i++) {
+        //Adds to stack if (
+        if(parentheses[i] == '(') {
+            push(parentheses[i]);
+        }
+        //Removes from stack if )
+        else {
+            pop(parentheses[i-1]);
+        }
+    }
+
+    //prints out results once string has been exhausted
+    if(count == 0) {
+        printf("Balanced");
+        
+    }
+    else {
+        printf("Un-Balanced");
+    }
+}
+]0;~/Lab 3
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 3[0m
+$ ca[K[Kcc Lab3.c
+]0;~/Lab 3
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 3[0m
+$ ./a
+Balanced]0;~/Lab 3
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 3[0m
+$ ls -1[Kl
+total 588
+-rwxr-xr-x 1 Admin None   1006 May 30 02:43 Lab3.c
+-rwxr-xr-x 1 Admin None 330941 May 30 02:42 Lab3.exe
+-rwxr-xr-x 1 Admin None      0 May 30 20:44 Lab3.txt
+-rwxr-xr-x 1 Admin None 161056 May 30 20:44 a.exe
+-rwxr-xr-x 1 Admin None 101457 May 28 19:50 lab3COMP2540S21.pdf
+]0;~/Lab 3
+[32mAdmin@DESKTOP-0R6BCPL [33m~/Lab 3[0m
+$ exit
+exit
+
+Script done on 2021-05-30 20:44:44-04:00 [COMMAND_EXIT_CODE="0"]
